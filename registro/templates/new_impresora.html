@@ -1,0 +1,17 @@
+<h1>Cargar impresora nueva</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    
+    Toner
+    <select id="toner_select" name="toner" class="toner-dropdown">
+        {% for toner_select in select_toner %}
+            <option value="{{ toner_select }}">{{ toner_select }}</option>
+        {% endfor %}
+        </select>
+
+    <button>
+        Save
+    </button>
+</form>

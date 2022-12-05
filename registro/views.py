@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Area, Toner, Impresora
-from .forms import CreateNewArea, CreateNewToner
+from .forms import CreateNewArea, CreateNewToner, CreateNewImpresora
 
 
 # Create your views here.
@@ -39,3 +39,18 @@ def new_toner(request):
         Toner.objects.create(
             nombre=request.POST['nombre'])
         return redirect('/toners')
+
+def new_impresora(request):
+    if request.method == 'GET':
+        return render(request, 'new_impresora.html', {
+            'form': CreateNewImpresora()
+        })
+    else:
+        Impresora.objects.create(
+            marca=request.POST['marca'], modelo=request.POST['modelo'], id_toner=request.POST['id_toner'], id_area=request.POST['id_area'])
+        return redirect('/impresoras')
+
+def select_toners(request):
+    select_toners = Toner.objects.all
+
+    return render(request, '/new_impresora.html', select_toners)
