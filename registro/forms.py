@@ -11,6 +11,7 @@ class CreateNewArea(forms.Form):
 class CreateNewImpresora(forms.Form):
     marca = forms.CharField(label="Marca", max_length=50)
     modelo = forms.CharField(label="Modelo", max_length=50)
+    #toner = forms.Select()
 
 class SelectToner(forms.ModelForm):
     select_toner = forms.ModelChoiceField(queryset=Toner.objects.all())

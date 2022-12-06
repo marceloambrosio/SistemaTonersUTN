@@ -50,7 +50,8 @@ def new_impresora(request):
             marca=request.POST['marca'], modelo=request.POST['modelo'], id_toner=request.POST['id_toner'], id_area=request.POST['id_area'])
         return redirect('/impresoras')
 
-def select_toners(request):
-    select_toners = Toner.objects.all
-
-    return render(request, '/new_impresora.html', select_toners)
+def selectToners(request):
+    selectToners = Toner.objects.all()
+    return render(request, 'new_impresora.html', {
+        'selectToners': selectToners
+    })
