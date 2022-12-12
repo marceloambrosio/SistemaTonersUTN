@@ -10,18 +10,24 @@ def index(request):
 
 def mostrar_areas(request):
     areas = list(Area.objects.values())
-    return render(request, 'area/areas.html', {
+    return render(request, 'area/listado_areas.html', {
         'areas': areas
     })
     #return JsonResponse(areas, safe=False)
 
 def mostrar_toners(request):
     toners = list(Toner.objects.values())
-    return JsonResponse(toners, safe=False)
+    return render(request, 'toner/listado_toners.html', {
+        'toners': toners
+    })
+    #return JsonResponse(toners, safe=False)
 
 def mostrar_impresoras(request):
     impresoras = list(Impresora.objects.values())
-    return JsonResponse(impresoras, safe=False)
+    #return JsonResponse(impresoras, safe=False)
+    return render(request, 'impresora/listado_impresoras.html', {
+        'impresoras': impresoras
+    })
 
 def new_area(request):
     if request.method == 'GET':
@@ -35,7 +41,7 @@ def new_area(request):
 
 def new_toner(request):
     if request.method == 'GET':
-        return render(request, 'new_toner.html', {
+        return render(request, 'toner/new_toner.html', {
             'form': CreateNewToner()
         })
     else:
@@ -45,7 +51,7 @@ def new_toner(request):
 
 def new_impresora(request):
     if request.method == 'GET':
-        return render(request, 'new_impresora.html', {
+        return render(request, 'impresora/new_impresora.html', {
             'form': CreateNewImpresora()
         })
     else:
