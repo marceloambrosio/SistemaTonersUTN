@@ -10,7 +10,10 @@ def index(request):
 
 def mostrar_areas(request):
     areas = list(Area.objects.values())
-    return JsonResponse(areas, safe=False)
+    return render(request, 'area/areas.html', {
+        'areas': areas
+    })
+    #return JsonResponse(areas, safe=False)
 
 def mostrar_toners(request):
     toners = list(Toner.objects.values())
@@ -22,7 +25,7 @@ def mostrar_impresoras(request):
 
 def new_area(request):
     if request.method == 'GET':
-        return render(request, 'new_area.html', {
+        return render(request, 'area/new_area.html', {
             'form': CreateNewArea()
         })
     else:
