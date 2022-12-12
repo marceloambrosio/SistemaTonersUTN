@@ -29,7 +29,7 @@ def mostrar_impresoras(request):
         'impresoras': impresoras
     })
 
-def new_area(request):
+""" def new_area(request):
     if request.method == 'GET':
         return render(request, 'area/new_area.html', {
             'form': CreateNewArea()
@@ -37,7 +37,13 @@ def new_area(request):
     else:
         Area.objects.create(
             nombre=request.POST['nombre'], responsable=request.POST['responsable'])
-        return redirect('/areas')
+        return redirect('/areas') """
+def new_area(request):
+    form = CreateNewArea()
+    context = {
+        'form':form
+    }
+    return render(request, 'area/new_area', context)
 
 def new_toner(request):
     if request.method == 'GET':
