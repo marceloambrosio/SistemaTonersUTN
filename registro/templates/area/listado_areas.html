@@ -22,7 +22,7 @@
             <td>{{areas.responsable}}</td>
             <td>
                 <a href="{% url 'edit_area' areas.id %}" class="btn btn-primary" role="button" aria-pressed="true"><i class="bi-pencil"></i></a>
-                <button type="button" class="btn btn-danger"><i class="bi-trash"></i></button>
+                <a href="{% url 'delete_area' areas.id %}" class="btn btn-danger" role="button" aria-pressed="true"><i class="bi-trash"></i></a>
             </td>
         </tr>
         {% endfor %}

@@ -101,6 +101,12 @@ def edit_toner(request, id):
         form.save()
         return redirect('/toners')
 
+def delete_area(request, id):
+    area = get_object_or_404(Area, id=id)
+    if request.method == 'POST':
+        area.delete()
+        return redirect('/areas')
+
 def selectToners(request):
     selectToners = Toner.objects.all()
     return render(request, 'new_impresora.html', {
