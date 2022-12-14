@@ -2,14 +2,13 @@
 
 {% block content %}
 
-<h1>Cargar impresora nueva</h1>
+<h1>Editar area</h1>
+<h2>{{area.nombre}}</h2>
 
 <form method="POST">
     {% csrf_token %}
     {{form}}
-    <button>
-        Save
-    </button>
+    <button>Actualizar</button>
 </form>
 
 {% endblock %}
