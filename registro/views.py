@@ -79,6 +79,28 @@ def edit_area(request, id):
         form.save()
         return redirect('/areas')
 
+def edit_impresora(request, id):
+    if request.method == 'GET':
+        impresora = get_object_or_404(Impresora, id=id)
+        form = CreateNewImpresora(instance=impresora)
+        return render(request, 'impresora/edit_impresora.html', {'impresora':impresora, 'form': form})
+    else:
+        impresora = get_object_or_404(Impresora, id=id)
+        form = CreateNewImpresora(request.POST, instance=impresora)
+        form.save()
+        return redirect('/impresoras')
+
+def edit_toner(request, id):
+    if request.method == 'GET':
+        toner = get_object_or_404(Toner, id=id)
+        form = CreateNewToner(instance=toner)
+        return render(request, 'toner/edit_toner.html', {'toner':toner, 'form': form})
+    else:
+        toner = get_object_or_404(Toner, id=id)
+        form = CreateNewToner(request.POST, instance=toner)
+        form.save()
+        return redirect('/toners')
+
 def selectToners(request):
     selectToners = Toner.objects.all()
     return render(request, 'new_impresora.html', {

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Editar toner</h1>
+<h2>{{toner.nombre}}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button>Actualizar</button>
+</form>
+
+{% endblock %}

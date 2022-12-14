@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Editar impresora</h1>
+<h2>{{impresora.marca}} {{impresora.modelo}}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button>Actualizar</button>
+</form>
+
+{% endblock %}

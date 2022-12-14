@@ -19,7 +19,7 @@
             <td>{{toners.id}}</td>
             <td>{{toners.nombre}}</td>
             <td>
-                <button type="button" class="btn btn-primary"><i class="bi-pencil"></i></button>
+              <a href="{% url 'edit_toner' toners.id %}" class="btn btn-primary" role="button" aria-pressed="true"><i class="bi-pencil"></i></a>
                 <button type="button" class="btn btn-danger"><i class="bi-trash"></i></button>
             </td>
         </tr>
