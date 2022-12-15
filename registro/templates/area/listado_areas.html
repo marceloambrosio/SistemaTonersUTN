@@ -22,6 +22,7 @@
             <td>{{areas.responsable}}</td>
             <td>
                 <a href="{% url 'edit_area' areas.id %}" class="btn btn-primary" role="button" aria-pressed="true"><i class="bi-pencil"></i></a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminarArea"><i class="bi-trash"></i></button>
                 <a href="{% url 'delete_area' areas.id %}" class="btn btn-danger" role="button" aria-pressed="true"><i class="bi-trash"></i></a>
             </td>
         </tr>
@@ -50,5 +51,22 @@
       </div>
     </div>
   </div>
+
+<!-- Modal eliminar area -->
+<div class="modal fade" id="modalEliminarArea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar area</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <p>Esta seguro que desea eliminar el registro?</p>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <a href="{% url 'delete_area' areas.id %}" class="btn btn-danger" role="button" aria-pressed="true"><i class="bi-trash"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

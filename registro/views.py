@@ -29,15 +29,6 @@ def mostrar_impresoras(request):
         'impresoras': impresoras
     })
 
-""" def new_area(request):
-    if request.method == 'GET':
-        return render(request, 'area/new_area.html', {
-            'form': CreateNewArea
-        })
-    else:
-        Area.objects.create(
-            nombre=request.POST['nombre'], responsable=request.POST['responsable'])
-        return redirect('/areas') """
 def new_area(request):
     if request.method == 'GET':
         return render(request, 'area/new_area.html', {
@@ -103,9 +94,8 @@ def edit_toner(request, id):
 
 def delete_area(request, id):
     area = get_object_or_404(Area, id=id)
-    if request.method == 'POST':
-        area.delete()
-        return redirect('/areas')
+    area.delete()
+    return redirect('/areas')
 
 def selectToners(request):
     selectToners = Toner.objects.all()
