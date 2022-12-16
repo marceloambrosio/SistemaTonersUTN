@@ -94,8 +94,27 @@ def edit_toner(request, id):
 
 def delete_area(request, id):
     area = get_object_or_404(Area, id=id)
-    area.delete()
-    return redirect('/areas')
+    if request.method == 'GET':
+        return render(request, 'area/delete_area.html', {'area':area})
+    else:
+        area.delete()
+        return redirect('/areas')
+
+def delete_toner(request, id):
+    toner = get_object_or_404(Toner, id=id)
+    if request.method == 'GET':
+        return render(request, 'toner/delete_toner.html', {'toner':toner})
+    else:
+        toner.delete()
+        return redirect('/toners')
+
+def delete_impresora(request, id):
+    impresora = get_object_or_404(Impresora, id=id)
+    if request.method == 'GET':
+        return render(request, 'impresora/delete_impresora.html', {'impresora':impresora})
+    else:
+        impresora.delete()
+        return redirect('/impresoras')
 
 def selectToners(request):
     selectToners = Toner.objects.all()

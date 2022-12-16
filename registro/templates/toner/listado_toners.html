@@ -20,33 +20,11 @@
             <td>{{toners.nombre}}</td>
             <td>
               <a href="{% url 'edit_toner' toners.id %}" class="btn btn-primary" role="button" aria-pressed="true"><i class="bi-pencil"></i></a>
-                <button type="button" class="btn btn-danger"><i class="bi-trash"></i></button>
+              <a href="{% url 'delete_toner' toners.id %}" class="btn btn-danger" role="button" aria-pressed="true"><i class="bi-trash"></i></a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
-<!-- Modal agregar area -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar area</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form method="POST">
-                {% csrf_token %}
-                {{form}}
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Agregar</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 {% endblock %}
