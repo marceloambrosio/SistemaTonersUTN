@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for areas in areas %}
+        {% for areas in entity %}
         <tr>
             <td>{{areas.id}}</td>
             <td>{{areas.nombre}}</td>
@@ -27,5 +27,8 @@
         {% endfor %}
     </tbody>
 </table>
+<div>
+    {% include 'paginator.html' %}
+</div>
 
 {% endblock %}

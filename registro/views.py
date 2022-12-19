@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
 from .models import Area, Toner, Impresora
 from .forms import CreateNewArea, CreateNewToner, CreateNewImpresora
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -9,24 +10,48 @@ def index(request):
     return render(request, 'index.html')
 
 def mostrar_areas(request):
-    areas = list(Area.objects.values())
+    areas = Area.objects.all()
+    page = request.GET.get('page',1)
+
+    try:
+        paginator = Paginator(areas, 6)
+        areas = paginator.page(page)
+    except:
+        raise Http404
+
     return render(request, 'area/listado_areas.html', {
-        'areas': areas
+        'entity': areas,
+        'paginator': paginator
     })
-    #return JsonResponse(areas, safe=False)
 
 def mostrar_toners(request):
-    toners = list(Toner.objects.values())
+    toners = Toner.objects.all()
+    page = request.GET.get('page',1)
+
+    try:
+        paginator = Paginator(toners, 6)
+        toners = paginator.page(page)
+    except:
+        raise Http404
+
     return render(request, 'toner/listado_toners.html', {
-        'toners': toners
+        'entity': toners,
+        'paginator': paginator
     })
-    #return JsonResponse(toners, safe=False)
 
 def mostrar_impresoras(request):
-    impresoras = list(Impresora.objects.values())
-    #return JsonResponse(impresoras, safe=False)
+    impresoras = Impresora.objects.all()
+    page = request.GET.get('page',1)
+
+    try:
+        paginator = Paginator(impresoras, 6)
+        impresoras = paginator.page(page)
+    except:
+        raise Http404
+
     return render(request, 'impresora/listado_impresoras.html', {
-        'impresoras': impresoras
+        'entity': impresoras,
+        'paginator': paginator
     })
 
 def new_area(request):
