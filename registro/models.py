@@ -4,6 +4,7 @@ from django.db import models
 
 class Toner(models.Model):
     nombre = models.CharField(max_length=50)
+    stock = models.IntegerField()
     
     def __str__(self):
         return self.nombre

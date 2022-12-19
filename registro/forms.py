@@ -5,7 +5,7 @@ from django.forms import ModelForm
 class CreateNewToner(ModelForm):
     class Meta:
         model = Toner
-        fields = ['nombre']
+        fields = ['nombre', 'stock']
 
 class CreateNewArea(ModelForm):
     class Meta:
@@ -15,8 +15,4 @@ class CreateNewArea(ModelForm):
 class CreateNewImpresora(ModelForm):
     class Meta:
         model = Impresora
-        fields = ['marca', 'modelo']
-
-
-class SelectToner(forms.ModelForm):
-    select_toner = forms.ModelChoiceField(queryset=Toner.objects.all())
+        fields = ['marca', 'modelo', 'toner', 'area']

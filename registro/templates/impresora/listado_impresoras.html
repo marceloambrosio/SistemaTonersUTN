@@ -8,8 +8,7 @@
     <thead>
         <tr>
             <th scope="col" class="col-1">ID</th>
-            <th scope="col" class="col-2">Marca</th>
-            <th scope="col" class="col-2">Modelo</th>
+            <th scope="col" class="col-4">Impresora</th>
             <th scope="col" class="col-2">Toner</th>
             <th scope="col" class="col-3">Area</th>
             <th scope="col" class="col-2">Acciones</th>
@@ -19,8 +18,7 @@
         {% for impresoras in entity %}
         <tr>
             <td>{{impresoras.id}}</td>
-            <td>{{impresoras.marca}}</td>
-            <td>{{impresoras.modelo}}</td>
+            <td><b>{{impresoras.marca}}</b> {{impresoras.modelo}}</td>
             <td>{{impresoras.toner_id}}</td>
             <td>{{impresoras.area_id}}</td>
             <td>
