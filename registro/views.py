@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse, Http404
 from .models import Area, Toner, Impresora
-from .forms import CreateNewArea, CreateNewToner, CreateNewImpresora
+from .forms import CreateNewArea, CreateNewToner, CreateNewImpresora, CreateNewRegistro
 from django.core.paginator import Paginator
 
 
@@ -83,6 +83,16 @@ def new_impresora(request):
         form = CreateNewImpresora(request.POST)
         form.save()
         return redirect('/impresoras')
+
+def new_registro(request):
+    if request.method == 'GET':
+        return render(request, 'registro/new_registro.html', {
+            'form': CreateNewRegistro()
+        })
+    else:
+        form = CreateNewRegistro(request.POST)
+        form.save()
+        return redirect('/registros')
 
 def edit_area(request, id):
     if request.method == 'GET':

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Toner, Area, Impresora
+from .models import Toner, Area, Impresora, Registro
 from django.forms import ModelForm
 
 class CreateNewToner(ModelForm):
@@ -16,3 +16,8 @@ class CreateNewImpresora(ModelForm):
     class Meta:
         model = Impresora
         fields = ['marca', 'modelo', 'toner', 'area']
+
+class CreateNewRegistro(ModelForm):
+    class Meta:
+        model = Registro
+        fields = ['fecha', 'impresora', 'cantidad']
