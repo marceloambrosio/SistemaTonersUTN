@@ -4,12 +4,26 @@
 
 <h1>Cargar impresora nueva</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button>
-        Save
-    </button>
-</form>
+<div class="card" style="width: 18rem;">
+    <img src="https://cdn.thewirecutter.com/wp-content/media/2022/03/52-things-officejet-2048px-5889-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=980&dpr=2"
+        class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Agregar impresora</h5>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Marca</label>
+                {{ form.marca }}
+                <label class="form-label">Modelo</label>
+                {{ form.modelo }}
+                <label class="form-label">Toner</label>
+                {{ form.toner }}
+                <label class="form-label">Area</label>
+                {{ form.area }}
+            </div>
+            <button class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

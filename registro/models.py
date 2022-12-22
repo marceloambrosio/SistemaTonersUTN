@@ -28,7 +28,7 @@ class Impresora(models.Model):
 class Registro(models.Model):
     fecha = models.DateField()
     impresora = models.ForeignKey(Impresora, on_delete=models.CASCADE)
-    cantidad = models.IntegerField()
+    cantidad = models.IntegerField(default=1)
 
     def __str__(self):
         return self.fecha + self.impresora + "Cantidad: " + self.cantidad

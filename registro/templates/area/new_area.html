@@ -4,12 +4,22 @@
 
 <h1>Cargar area nueva</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button>
-        Save
-    </button>
-</form>
+<div class="card" style="width: 18rem;">
+    <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lago-1257-home-office-36e8-with-air-desk-1593015859.jpg?crop=1.00xw:0.937xh;0,0.0537xh&resize=980:*"
+        class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Agregar area</h5>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                {{ form.nombre }}
+                <label class="form-label">Responsable</label>
+                {{ form.responsable }}
+            </div>
+            <button class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

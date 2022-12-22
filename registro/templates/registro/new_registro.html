@@ -2,14 +2,24 @@
 
 {% block content %}
 
-<h1>Registrar entrega de toner</h1>
-
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button>
-        Save
-    </button>
-</form>
+<div class="card" style="width: 18rem;">
+    <img src="https://ilovecyclo.com/wp-content/uploads/2022/03/portada-blog-como-registrar-ciclo-menstrual-fases-menstruacion-diario-seguimiento-Paloma-firma-libro-cyclo-menstruacion-sostenible-positivo-2.jpg"
+        class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Registrar entrega de toner</h5>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Fecha</label>
+                {{ form.fecha }}
+                <label class="form-label">Impresora</label>
+                {{ form.impresora }}
+                <label class="form-label">Cantidad</label>
+                {{ form.cantidad }}
+            </div>
+            <button class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
