@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <h1>Cargar area nueva</h1>
 
 <div class="card" style="width: 18rem;">
-    <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lago-1257-home-office-36e8-with-air-desk-1593015859.jpg?crop=1.00xw:0.937xh;0,0.0537xh&resize=980:*"
+    <img src="{% static 'images/area.jpg' %}"
         class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">Agregar area</h5>

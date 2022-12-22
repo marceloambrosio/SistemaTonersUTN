@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse, Http404
-from .models import Area, Toner, Impresora
+from .models import Area, Toner, Impresora, Registro
 from .forms import CreateNewArea, CreateNewToner, CreateNewImpresora, CreateNewRegistro
 from django.core.paginator import Paginator
+from django.views.generic import CreateView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -54,45 +57,46 @@ def mostrar_impresoras(request):
         'paginator': paginator
     })
 
-def new_area(request):
-    if request.method == 'GET':
-        return render(request, 'area/new_area.html', {
-            'form': CreateNewArea
-        })
-    else:
-        form = CreateNewArea(request.POST)
-        form.save()
-        return redirect('/areas')
+class AreaCreateViews(SuccessMessageMixin, CreateView):
+    model = Area
+    form_class = CreateNewArea
+    template_name = 'area/new_area.html'
+    success_message = 'Se creo el area'
+    success_url = reverse_lazy('areas')
 
-def new_toner(request):
-    if request.method == 'GET':
-        return render(request, 'toner/new_toner.html', {
-            'form': CreateNewToner
-        })
-    else:
-        form = CreateNewToner(request.POST)
-        form.save()
-        return redirect('/toners')
+class TonerCreateViews(CreateView, SuccessMessageMixin):
+    model = Toner
+    form_class = CreateNewToner
+    template_name = 'toner/new_toner.html'
+    success_message = 'Se creo el toner'
+    success_url = reverse_lazy('toners')
 
-def new_impresora(request):
-    if request.method == 'GET':
-        return render(request, 'impresora/new_impresora.html', {
-            'form': CreateNewImpresora()
-        })
-    else:
-        form = CreateNewImpresora(request.POST)
-        form.save()
-        return redirect('/impresoras')
+class ImpresoraCreateViews(CreateView, SuccessMessageMixin):
+    model = Impresora
+    form_class = CreateNewImpresora
+    template_name = 'impresora/new_impresora.html'
+    success_message = 'Se creo la impresora'
+    success_url = reverse_lazy('impresoras')
 
-def new_registro(request):
-    if request.method == 'GET':
-        return render(request, 'registro/new_registro.html', {
-            'form': CreateNewRegistro()
-        })
-    else:
-        form = CreateNewRegistro(request.POST)
+class RegistroCreateViews(CreateView, SuccessMessageMixin):
+    model = Registro
+    form_class = CreateNewRegistro
+    template_name = 'registro/new_registro.html'
+    success_message = 'Se creo el registro'
+    success_url = reverse_lazy('registros')
+
+    def form_valid(self, form):
+        self.data = form.cleaned_data
+        impresora = self.data['impresora']
+        cantidad = self.data['cantidad']
+
+        impresora = Impresora.objects.filter(id=impresora.id).first()
+        print(impresora)
+        print(impresora.toner)
+        impresora.toner.stock = impresora.toner.stock - cantidad
+        impresora.toner.save()
         form.save()
-        return redirect('/registros')
+        return render(self.request, 'registros.html')
 
 def edit_area(request, id):
     if request.method == 'GET':

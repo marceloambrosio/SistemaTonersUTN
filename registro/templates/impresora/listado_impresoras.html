@@ -19,8 +19,8 @@
         <tr>
             <td>{{impresoras.id}}</td>
             <td><b>{{impresoras.marca}}</b> {{impresoras.modelo}}</td>
-            <td>{{impresoras.toner_id}}</td>
-            <td>{{impresoras.area_id}}</td>
+            <td>{{impresoras.toner.nombre}}</td>
+            <td>{{impresoras.area.nombre}}</td>
             <td>
               <a href="{% url 'edit_impresora' impresoras.id %}" class="btn btn-primary" role="button" aria-pressed="true"><i class="bi-pencil"></i></a>
               <a href="{% url 'delete_impresora' impresoras.id %}" class="btn btn-danger" role="button" aria-pressed="true"><i class="bi-trash"></i></a>
