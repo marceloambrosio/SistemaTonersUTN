@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse, Http404
 from .models import Area, Toner, Impresora, Registro
 from .forms import CreateNewArea, CreateNewToner, CreateNewImpresora, CreateNewRegistro
 from django.core.paginator import Paginator
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DeleteView, View
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 
@@ -98,7 +98,14 @@ class RegistroCreateViews(CreateView, SuccessMessageMixin):
         form.save()
         return render(self.request, 'registros.html')
 
-def edit_area(request, id):
+class AreaUpdateViews(UpdateView, SuccessMessageMixin):
+    model = Area
+    form_class = CreateNewArea
+    template_name = 'area/edit_area.html'
+    success_message = 'Se edito correctamente el area'
+    success_url = reverse_lazy('areas')
+
+""" def edit_area(request, id):
     if request.method == 'GET':
         area = get_object_or_404(Area, id=id)
         form = CreateNewArea(instance=area)
@@ -107,7 +114,7 @@ def edit_area(request, id):
         area = get_object_or_404(Area, id=id)
         form = CreateNewArea(request.POST, instance=area)
         form.save()
-        return redirect('/areas')
+        return redirect('/areas') """
 
 def edit_impresora(request, id):
     if request.method == 'GET':
@@ -131,13 +138,19 @@ def edit_toner(request, id):
         form.save()
         return redirect('/toners')
 
-def delete_area(request, id):
+class AreaDeleteView(DeleteView, SuccessMessageMixin):
+    model = Area
+    success_url = reverse_lazy('areas')
+    template_name = 'area/delete_area.html'
+    success_message = 'Se elimino el area'
+
+""" def delete_area(request, id):
     area = get_object_or_404(Area, id=id)
     if request.method == 'GET':
         return render(request, 'area/delete_area.html', {'area':area})
     else:
         area.delete()
-        return redirect('/areas')
+        return redirect('/areas') """
 
 def delete_toner(request, id):
     toner = get_object_or_404(Toner, id=id)

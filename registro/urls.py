@@ -10,10 +10,10 @@ urlpatterns = [
     path('new_impresora/', views.ImpresoraCreateViews.as_view(), name="new_impresora"),
     path('new_toner/', views.TonerCreateViews.as_view(), name="new_toner"),
     path('new_registro/', views.RegistroCreateViews.as_view(), name="new_registro"),
-    path('edit_area/<int:id>', views.edit_area, name="edit_area"),
+    path('edit_area/<int:pk>/', views.AreaUpdateViews.as_view(), name="edit_area"),
     path('edit_impresora/<int:id>', views.edit_impresora, name="edit_impresora"),
     path('edit_toner/<int:id>', views.edit_toner, name="edit_toner"),
-    path('delete_area/<int:id>/', views.delete_area, name="delete_area"),
+    path('delete_area/<int:pk>/', views.AreaDeleteView.as_view(), name="delete_area"),
     path('delete_toner/<int:id>/', views.delete_toner, name="delete_toner"),
     path('delete_impresora/<int:id>/', views.delete_impresora, name="delete_impresora"),
 ]
