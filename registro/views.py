@@ -64,21 +64,21 @@ class AreaCreateViews(SuccessMessageMixin, CreateView):
     success_message = 'Se creo el area'
     success_url = reverse_lazy('areas')
 
-class TonerCreateViews(CreateView, SuccessMessageMixin):
+class TonerCreateViews(SuccessMessageMixin, CreateView):
     model = Toner
     form_class = CreateNewToner
     template_name = 'toner/new_toner.html'
     success_message = 'Se creo el toner'
     success_url = reverse_lazy('toners')
 
-class ImpresoraCreateViews(CreateView, SuccessMessageMixin):
+class ImpresoraCreateViews(SuccessMessageMixin, CreateView):
     model = Impresora
     form_class = CreateNewImpresora
     template_name = 'impresora/new_impresora.html'
     success_message = 'Se creo la impresora'
     success_url = reverse_lazy('impresoras')
 
-class RegistroCreateViews(CreateView, SuccessMessageMixin):
+class RegistroCreateViews(SuccessMessageMixin, CreateView):
     model = Registro
     form_class = CreateNewRegistro
     template_name = 'registro/new_registro.html'
@@ -98,78 +98,41 @@ class RegistroCreateViews(CreateView, SuccessMessageMixin):
         form.save()
         return render(self.request, 'registros.html')
 
-class AreaUpdateViews(UpdateView, SuccessMessageMixin):
+class AreaUpdateViews(SuccessMessageMixin, UpdateView):
     model = Area
     form_class = CreateNewArea
     template_name = 'area/edit_area.html'
     success_message = 'Se edito correctamente el area'
     success_url = reverse_lazy('areas')
 
-""" def edit_area(request, id):
-    if request.method == 'GET':
-        area = get_object_or_404(Area, id=id)
-        form = CreateNewArea(instance=area)
-        return render(request, 'area/edit_area.html', {'area':area, 'form': form})
-    else:
-        area = get_object_or_404(Area, id=id)
-        form = CreateNewArea(request.POST, instance=area)
-        form.save()
-        return redirect('/areas') """
+class ImpresoraUpdateViews(SuccessMessageMixin, UpdateView):
+    model = Impresora
+    form_class = CreateNewImpresora
+    template_name = 'impresora/edit_impresora.html'
+    success_message = 'Se edito correctamente la impresora'
+    success_url = reverse_lazy('impresoras')
 
-def edit_impresora(request, id):
-    if request.method == 'GET':
-        impresora = get_object_or_404(Impresora, id=id)
-        form = CreateNewImpresora(instance=impresora)
-        return render(request, 'impresora/edit_impresora.html', {'impresora':impresora, 'form': form})
-    else:
-        impresora = get_object_or_404(Impresora, id=id)
-        form = CreateNewImpresora(request.POST, instance=impresora)
-        form.save()
-        return redirect('/impresoras')
+class TonerUpdateViews(SuccessMessageMixin, UpdateView):
+    model = Toner
+    form_class = CreateNewToner
+    template_name = 'toner/edit_toner.html'
+    success_message = 'Se edito correctamente el toner'
+    success_url = reverse_lazy('toners')
 
-def edit_toner(request, id):
-    if request.method == 'GET':
-        toner = get_object_or_404(Toner, id=id)
-        form = CreateNewToner(instance=toner)
-        return render(request, 'toner/edit_toner.html', {'toner':toner, 'form': form})
-    else:
-        toner = get_object_or_404(Toner, id=id)
-        form = CreateNewToner(request.POST, instance=toner)
-        form.save()
-        return redirect('/toners')
-
-class AreaDeleteView(DeleteView, SuccessMessageMixin):
+class AreaDeleteView(SuccessMessageMixin, DeleteView):
     model = Area
     success_url = reverse_lazy('areas')
     template_name = 'area/delete_area.html'
     success_message = 'Se elimino el area'
 
-""" def delete_area(request, id):
-    area = get_object_or_404(Area, id=id)
-    if request.method == 'GET':
-        return render(request, 'area/delete_area.html', {'area':area})
-    else:
-        area.delete()
-        return redirect('/areas') """
+class TonerDeleteView(SuccessMessageMixin, DeleteView):
+    model = Toner
+    success_url = reverse_lazy('toners')
+    template_name = 'toner/delete_toner.html'
+    success_message = 'Se elimino el toner'
 
-def delete_toner(request, id):
-    toner = get_object_or_404(Toner, id=id)
-    if request.method == 'GET':
-        return render(request, 'toner/delete_toner.html', {'toner':toner})
-    else:
-        toner.delete()
-        return redirect('/toners')
-
-def delete_impresora(request, id):
-    impresora = get_object_or_404(Impresora, id=id)
-    if request.method == 'GET':
-        return render(request, 'impresora/delete_impresora.html', {'impresora':impresora})
-    else:
-        impresora.delete()
-        return redirect('/impresoras')
-
-def selectToners(request):
-    selectToners = Toner.objects.all()
-    return render(request, 'new_impresora.html', {
-        'selectToners': selectToners
-    })
+class ImpresoraDeleteView(SuccessMessageMixin, DeleteView):
+    model = Impresora
+    success_url = reverse_lazy('impresoras')
+    template_name = 'impresora/delete_impresora.html'
+    success_message = 'Se elimino la impresora'
