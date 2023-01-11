@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Eliminar registro</h1>
+Seguro que deseas eliminar <b>{{registro.fecha}} - {{registro.impresora.marca}} {{registro.impresora.modelo}} ({{registro.impresora.area.nombre}}) - Cantidad: {{registro.cantidad}}</b>?
+
+<form method="POST">
+    {% csrf_token %}
+    <button class="btn btn-danger">Eliminar</button>
+</form>
+
+
+{% endblock %}

@@ -57,6 +57,21 @@ def mostrar_impresoras(request):
         'paginator': paginator
     })
 
+def mostrar_registros(request):
+    registros = Registro.objects.all()
+    page = request.GET.get('page',1)
+
+    try:
+        paginator = Paginator(registros, 6)
+        registros = paginator.page(page)
+    except:
+        raise Http404
+
+    return render(request, 'registro/listado_registros.html', {
+        'entity': registros,
+        'paginator': paginator
+    })
+
 class AreaCreateViews(SuccessMessageMixin, CreateView):
     model = Area
     form_class = CreateNewArea
@@ -119,6 +134,13 @@ class TonerUpdateViews(SuccessMessageMixin, UpdateView):
     success_message = 'Se edito correctamente el toner'
     success_url = reverse_lazy('toners')
 
+class RegistroUpdateViews(SuccessMessageMixin, UpdateView):
+    model = Registro
+    form_class = CreateNewRegistro
+    template_name = 'registro/edit_registro.html'
+    success_message = 'Se edito correctamente el registro'
+    success_url = reverse_lazy('registros')
+
 class AreaDeleteView(SuccessMessageMixin, DeleteView):
     model = Area
     success_url = reverse_lazy('areas')
@@ -136,3 +158,9 @@ class ImpresoraDeleteView(SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('impresoras')
     template_name = 'impresora/delete_impresora.html'
     success_message = 'Se elimino la impresora'
+
+class RegistroDeleteView(SuccessMessageMixin, DeleteView):
+    model = Registro
+    success_url = reverse_lazy('registros')
+    template_name = 'registro/delete_registro.html'
+    success_message = 'Se elimino el registro'
