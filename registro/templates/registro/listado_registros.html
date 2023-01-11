@@ -8,8 +8,9 @@
     <thead>
         <tr>
             <th scope="col" class="col-2">Fecha</th>
-            <th scope="col" class="col-3">Impresora</th>
-            <th scope="col" class="col-3">Area</th>
+            <th scope="col" class="col-2">Impresora</th>
+            <th scope="col" class="col-2">Toner</th>
+            <th scope="col" class="col-2">Area</th>
             <th scope="col" class="col-2">Cantidad</th>
             <th scope="col" class="col-2">Acciones</th>
         </tr>
@@ -19,6 +20,7 @@
         <tr>
             <td>{{registros.fecha}}</td>
             <td>{{registros.impresora.marca}} {{registros.impresora.modelo}}</td>
+            <td>{{registros.impresora.toner.nombre}}</td>
             <td>{{registros.impresora.area.nombre}}</td>
             <td>{{registros.cantidad}}</td>
             <td>

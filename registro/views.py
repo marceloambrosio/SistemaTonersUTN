@@ -106,8 +106,6 @@ class RegistroCreateViews(SuccessMessageMixin, CreateView):
         cantidad = self.data['cantidad']
 
         impresora = Impresora.objects.filter(id=impresora.id).first()
-        print(impresora)
-        print(impresora.toner)
         impresora.toner.stock = impresora.toner.stock - cantidad
         impresora.toner.save()
         form.save()
@@ -141,6 +139,17 @@ class RegistroUpdateViews(SuccessMessageMixin, UpdateView):
     success_message = 'Se edito correctamente el registro'
     success_url = reverse_lazy('registros')
 
+    def form_valid(self, form):
+        self.data = form.cleaned_data
+        impresora = self.data['impresora']
+        cantidad = self.data['cantidad']
+
+        impresora = Impresora.objects.filter(id=impresora.id).first()
+        impresora.toner.stock = impresora.toner.stock + cantidad
+        impresora.toner.save()
+        form.save()
+        return render(self.request, 'registros.html')
+
 class AreaDeleteView(SuccessMessageMixin, DeleteView):
     model = Area
     success_url = reverse_lazy('areas')
@@ -164,3 +173,14 @@ class RegistroDeleteView(SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('registros')
     template_name = 'registro/delete_registro.html'
     success_message = 'Se elimino el registro'
+
+    def form_valid(self, form):
+        self.data = form.cleaned_data
+        impresora = self.data['impresora']
+        cantidad = self.data['cantidad']
+
+        impresora = Impresora.objects.filter(id=impresora.id).first()
+        impresora.toner.stock = impresora.toner.stock + cantidad
+        impresora.toner.save()
+        form.save()
+        return render(self.request, 'registros.html')
