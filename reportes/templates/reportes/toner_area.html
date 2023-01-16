@@ -4,6 +4,35 @@
 
 <h1>Toner por area</h1>
 
+<div>
+    {% include 'daterangepicker.html' %}
+</div>
 
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col" class="col-3">Fecha</th>
+            <th scope="col" class="col-3">Impresora</th>
+            <th scope="col" class="col-2">Toner</th>
+            <th scope="col" class="col-2">Area</th>
+            <th scope="col" class="col-2">Cantidad</th>
+        </tr>
+    </thead>
+<!--     <tbody>
+        {% for registros in entity %}
+        <tr>
+            <td>{{registros.fecha}}</td>
+            <td>{{registros.impresora.marca}} {{registros.impresora.modelo}}</td>
+            <td>{{registros.impresora.toner.nombre}}</td>
+            <td>{{registros.impresora.area.nombre}}</td>
+            <td>{{registros.cantidad}}</td>
+            <td>
+                <a href="{% url 'edit_registro' registros.id %}" class="btn btn-primary" role="button" aria-pressed="true"><i class="bi-pencil"></i></a>
+                <a href="{% url 'delete_registro' registros.id %}" class="btn btn-danger" role="button" aria-pressed="true"><i class="bi-trash"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody> -->
+</table>
 
 {% endblock content %}
