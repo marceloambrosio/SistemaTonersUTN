@@ -4,6 +4,28 @@
 
 <h1>Toner por area</h1>
 
+<div class="card" style="width: 18rem;">
+    <img src="https://ilovecyclo.com/wp-content/uploads/2022/03/portada-blog-como-registrar-ciclo-menstrual-fases-menstruacion-diario-seguimiento-Paloma-firma-libro-cyclo-menstruacion-sostenible-positivo-2.jpg"
+        class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Registrar entrega de toner</h5>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Desde</label>
+                {{ form.fecha_desde }}
+                <label class="form-label">Hasta</label>
+                {{ form.fecha_hasta }}
+                <label class="form-label">Area</label>
+                {{ form.area }}
+                <label class="form-label">Impresora</label>
+                {{ form.impresora }}
+            </div>
+            <button class="btn btn-primary">Mostrar</button>
+        </form>
+    </div>
+</div>
+
 <table class="table table-hover">
     <thead>
         <tr>
