@@ -13,7 +13,7 @@ def index(request):
     return render(request, 'index.html')
 
 def mostrar_areas(request):
-    areas = Area.objects.all()
+    areas = Area.objects.all().order_by('nombre')
     page = request.GET.get('page',1)
 
     try:
@@ -28,7 +28,7 @@ def mostrar_areas(request):
     })
 
 def mostrar_toners(request):
-    toners = Toner.objects.all()
+    toners = Toner.objects.all().order_by('nombre')
     page = request.GET.get('page',1)
 
     try:
@@ -43,7 +43,7 @@ def mostrar_toners(request):
     })
 
 def mostrar_impresoras(request):
-    impresoras = Impresora.objects.all()
+    impresoras = Impresora.objects.all().order_by('marca', 'modelo')
     page = request.GET.get('page',1)
 
     try:

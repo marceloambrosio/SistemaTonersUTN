@@ -36,7 +36,7 @@
             <th scope="col" class="col-2">Cantidad</th>
         </tr>
     </thead>
-<!--     <tbody>
+    <tbody>
         {% for registros in entity %}
         <tr>
             <td>{{registros.fecha}}</td>
@@ -44,13 +44,9 @@
             <td>{{registros.impresora.toner.nombre}}</td>
             <td>{{registros.impresora.area.nombre}}</td>
             <td>{{registros.cantidad}}</td>
-            <td>
-                <a href="{% url 'edit_registro' registros.id %}" class="btn btn-primary" role="button" aria-pressed="true"><i class="bi-pencil"></i></a>
-                <a href="{% url 'delete_registro' registros.id %}" class="btn btn-danger" role="button" aria-pressed="true"><i class="bi-trash"></i></a>
-            </td>
         </tr>
         {% endfor %}
-    </tbody> -->
+    </tbody>
 </table>
 
 {% endblock content %}
