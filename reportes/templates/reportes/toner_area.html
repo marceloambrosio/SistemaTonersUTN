@@ -4,27 +4,10 @@
 
 <h1>Toner por area</h1>
 
-<div class="card" style="width: 18rem;">
-    <img src="https://ilovecyclo.com/wp-content/uploads/2022/03/portada-blog-como-registrar-ciclo-menstrual-fases-menstruacion-diario-seguimiento-Paloma-firma-libro-cyclo-menstruacion-sostenible-positivo-2.jpg"
-        class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Registrar entrega de toner</h5>
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label class="form-label">Desde</label>
-                {{ form.fecha_desde }}
-                <label class="form-label">Hasta</label>
-                {{ form.fecha_hasta }}
-                <label class="form-label">Area</label>
-                {{ form.area }}
-                <label class="form-label">Impresora</label>
-                {{ form.impresora }}
-            </div>
-            <button class="btn btn-primary">Mostrar</button>
-        </form>
-    </div>
-</div>
+<form method="GET" action="{% url 'toner_area' %}">
+    {{ form.as_p}}
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
 
 <table class="table table-hover">
     <thead>
@@ -37,13 +20,13 @@
         </tr>
     </thead>
     <tbody>
-        {% for registros in entity %}
+        {% for toners in toner %}
         <tr>
-            <td>{{registros.fecha}}</td>
-            <td>{{registros.impresora.marca}} {{registros.impresora.modelo}}</td>
-            <td>{{registros.impresora.toner.nombre}}</td>
-            <td>{{registros.impresora.area.nombre}}</td>
-            <td>{{registros.cantidad}}</td>
+            <td>{{toners.fecha}}</td>
+            <td>{{toners.impresora.marca}} {{toners.impresora.modelo}}</td>
+            <td>{{toners.impresora.toner.nombre}}</td>
+            <td>{{toners.impresora.area.nombre}}</td>
+            <td>{{toners.cantidad}}</td>
         </tr>
         {% endfor %}
     </tbody>

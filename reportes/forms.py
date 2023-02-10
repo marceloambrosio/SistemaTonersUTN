@@ -1,29 +1,13 @@
 from registro.models import Toner, Area, Impresora, Registro
 from django.forms import ModelForm, TextInput, NumberInput, Select, DateInput
+from reportes.models import TonerPorArea
 
-class TonerArea(ModelForm):
+class TonerPorAreaForm(ModelForm):
     class Meta:
-        model = Registro
-        fields = ['fecha¨_desde', 'fecha_hasta', 'area', 'impresora']
+        model = TonerPorArea
+        fields = ['toner']
         widgets = {
-            'fecha_desde': DateInput(
-                attrs={
-                    'class': 'form-control',
-                    'type' : 'date',
-                }
-            ),
-            'fecha_hasta': DateInput(
-                attrs={
-                    'class': 'form-control',
-                    'type' : 'date',
-                }
-            ),
-            'area': Select(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
-            'impresora': Select(
+            'toner': Select(
                 attrs={
                     'class': 'form-control'
                 }
