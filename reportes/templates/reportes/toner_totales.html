@@ -55,12 +55,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for toners in toner %}
+                {% for ts in tic %}
                 <!-- HACER UN FOR QUE RECORRA TODO Y CUENTE SEGUN EL FILTER DEL AREA
                 TODO GUARDARLO EN UNA LISTA PARA DESPUES IMPRIMIR EN EL HTML -->
                 <tr>
-                    <td>{{toner_tic.impresora.area.nombre}}</td>
-                    <td>{{cant}}</td>
+                    <td>{{tic.area}}</td>
+                    <td>{{tic.cantidad}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

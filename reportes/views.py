@@ -22,10 +22,14 @@ def toner_area(request):
 
 
 def toner_totales(request):
-    toner_tic = TonerTotalesFilter(request.GET, queryset=Registro.objects.filter(impresora__area__nombre='TIC'))
+    toner_tic = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__area__nombre='TIC'))
+    toner_sae = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__area__nombre='SAE'))
     context = {
         'form': toner_tic.form,
-        'tic' : len(toner_tic.qs)
+        'tic' : {
+        'area':'SAE','cantidad':len(toner_sae.qs),
+        'area':'TIC','cantidad':len(toner_tic.qs),
+        }
     }
 
     return render(request, 'reportes/toner_totales.html', context)
