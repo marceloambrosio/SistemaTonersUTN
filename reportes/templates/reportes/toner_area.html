@@ -4,18 +4,57 @@
 
 <h1>Toner por area</h1>
 
-<form method="GET" action="{% url 'toner_area' %}">
+<!-- <form method="GET" action="{% url 'toner_area' %}">
     {{ form.as_p}}
     <input type="submit" value="Submit" class="btn btn-primary">
-</form>
+</form> -->
+<div class="row">
+    <div class="col-sm-8 mb-3 mb-sm-0">
+        <div class="card">
+            <div class="card-header">
+                Filtros
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Seleccionar toner</h5>
+                <form method="GET" action="{% url 'toner_area' %}">
+                    {{ form.as_p }}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <input type="submit" value="Filtrar" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                Cantidad de toner filtrados: {{ cant }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card text-center">
+            <div class="card-header">
+                Imprimir
+            </div>
+            <br>
+            <p class="card-text">Se generara un archivo en formato PDF</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <input type="submit" value="Generar PDF" class="btn btn-primary">
+            </div>
+            <br>
+            <div class="card-footer text-muted">
+                Listado con {{ cant }} items
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
 
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col" class="col-3">Fecha</th>
+            <th scope="col" class="col-4">Fecha</th>
             <th scope="col" class="col-3">Impresora</th>
-            <th scope="col" class="col-2">Toner</th>
-            <th scope="col" class="col-2">Area</th>
+            <th scope="col" class="col-3">Area</th>
             <th scope="col" class="col-2">Cantidad</th>
         </tr>
     </thead>
@@ -24,7 +63,6 @@
         <tr>
             <td>{{toners.fecha}}</td>
             <td>{{toners.impresora.marca}} {{toners.impresora.modelo}}</td>
-            <td>{{toners.impresora.toner.nombre}}</td>
             <td>{{toners.impresora.area.nombre}}</td>
             <td>{{toners.cantidad}}</td>
         </tr>
