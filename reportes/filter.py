@@ -11,12 +11,15 @@ class TonerPorAreaFilter(django_filters.FilterSet):
             #'fecha', 'impresora', 'impresora__toner', 'impresora__area', 'cantidad'
             'impresora__toner': ['exact']
             }
+
+
+class TonerTotalesFilter(django_filters.FilterSet):
+    fecha = django_filters.DateFromToRangeFilter()
+
+    class Meta:
+        model = Registro
+        fields = {}
         widgets = {
-            'impresora__toner': Select(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
             'fecha': DateInput(
                 attrs={
                     'class': 'form-control',

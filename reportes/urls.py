@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from reportes import views
 
 urlpatterns = [
     path('', views.InicioReportes.as_view(), name="inicio_reportes"),
     path('toner_area/', views.toner_area, name="toner_area"),
+    path('toner_totales/', views.toner_totales, name="toner_totales"),
 ]

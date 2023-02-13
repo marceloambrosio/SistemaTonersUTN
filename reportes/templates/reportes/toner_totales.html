@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Toner totales</h1>
+
+<div class="row">
+    <div class="col-sm-8 mb-3 mb-sm-0">
+        <div class="card">
+            <div class="card-header">
+                Rango
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Seleccione el intervalo de fechas</h5>
+                <form method="GET" action="{% url 'toner_totales' %}">
+                    {{ form.as_p }}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <input type="submit" value="Filtrar" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                Cantidades totales
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card text-center">
+            <div class="card-header">
+                Imprimir
+            </div>
+            <br>
+            <p class="card-text">Se generara un archivo en formato PDF con los datos mostrados en pantalla</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <input type="submit" value="Generar PDF" class="btn btn-primary">
+            </div>
+            <br>
+            <div class="card-footer text-muted">
+                Listado con {{ cant }} items
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-3">Toner</th>
+                    <th scope="col" class="col-3">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for toners in toner %}
+                <!-- HACER UN FOR QUE RECORRA TODO Y CUENTE SEGUN EL FILTER DEL AREA
+                TODO GUARDARLO EN UNA LISTA PARA DESPUES IMPRIMIR EN EL HTML -->
+                <tr>
+                    <td>{{toner_tic.impresora.area.nombre}}</td>
+                    <td>{{cant}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-3">Area</th>
+                    <th scope="col" class="col-3">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for toners in toner %}
+                <tr>
+                    <td>{{toners.fecha}}</td>
+                    <td>{{toners.impresora.marca}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
