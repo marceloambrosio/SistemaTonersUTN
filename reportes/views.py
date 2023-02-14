@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from registro.models import Registro
 from reportes.filter import TonerPorAreaFilter, TonerTotalesFilter
-from django.forms import ModelForm, TextInput, NumberInput, Select, DateInput
 
 
 class InicioReportes(TemplateView):
@@ -22,14 +21,26 @@ def toner_area(request):
 
 
 def toner_totales(request):
-    toner_tic = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__area__nombre='TIC'))
-    toner_sae = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__area__nombre='SAE'))
+    area_final = []
+    area_sae = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__area__nombre='SAE'))
+    area_tic = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__area__nombre='TIC'))
+    area_final = [
+        {'area':'SAE', 'cantidad':len(area_sae.qs)}, 
+        {'area':'TIC', 'cantidad':len(area_tic.qs)}, 
+        ]
+    
+    toner_final = []
+    toner_105a = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__toner__nombre='105A'))
+    toner_285u = TonerTotalesFilter(request.GET, queryset=Registro.objects.all().filter(impresora__toner__nombre='285U'))
+    toner_final = [
+        {'toner':'105A', 'cantidad':len(toner_105a.qs)},
+        {'toner':'285U', 'cantidad':len(toner_285u.qs)},
+    ]
+
     context = {
-        'form': toner_tic.form,
-        'tic' : {
-        'area':'SAE','cantidad':len(toner_sae.qs),
-        'area':'TIC','cantidad':len(toner_tic.qs),
-        }
+        'form': area_tic.form,
+        'areas': area_final,
+        'toners': toner_final,
     }
 
     return render(request, 'reportes/toner_totales.html', context)
