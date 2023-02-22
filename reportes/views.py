@@ -1,11 +1,28 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 from registro.models import Registro, Area, Toner
 from reportes.filter import TonerPorAreaFilter, TonerTotalesFilter
 
+from weasyprint import HTML
+from weasyprint.text.fonts import FontConfiguration
+
 
 class InicioReportes(TemplateView):
     template_name = 'reportes.html'
+
+def export_pdf(request):
+    context = {}
+    html = render_to_string("reportes/report_pdf.html", context)
+
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = "inline; report.pdf"
+
+    font_config = FontConfiguration()
+    HTML(string=html).write_pdf(response, font_config=font_config)
+
+    return response
 
 
 def toner_area(request):
